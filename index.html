@@ -459,6 +459,19 @@ Testing patterns (coverage, mocks, spies, fixtures)
 .right-column[
   ### Spies
   * Use to make sure a function was called
+  ```javascript
+    const sinon = require('sinon')
+
+    test('middleware is called only once', async t => {
+      const myApp = require('../')
+      const fakeMiddleware = sinon.spy()
+      myApp.use(fakeMiddleware)
+      t.ok(
+        fakeMiddleware.calledOnce(), 
+        'middleware called only once'
+      )
+    })
+  ```
 ]
 
     </textarea>

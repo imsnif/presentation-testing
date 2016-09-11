@@ -446,7 +446,25 @@ Testing patterns (coverage, mocks, spies, fixtures)
 .right-column[
   ### Fixtures
   * Use to create state data for tests and then tear it down
-  * Example: database entries, remote API responses, etc.
+  ```javascript
+    async function fixtures (names, friends) {
+      await names
+        .forEach(async f => await createUser(f))
+      await friends
+        .forEach(async f => await createFriendConnection(f))
+    }
+
+    test('can remove friend from user', async t => {
+      await fixtures([foo, bar], [{foo: 'bar'}, {bar: 'foo'}])
+      await removeFriend('foo', 'bar')
+      const currentFriends = getFriends('foo')
+      t.equals(
+        currentFriends.length,
+        0,
+        'friend successfully removed'
+      )
+    })
+  ```
 ]
 ---
 .left-column[
@@ -467,7 +485,7 @@ Testing patterns (coverage, mocks, spies, fixtures)
       const fakeMiddleware = sinon.spy()
       myApp.use(fakeMiddleware)
       t.ok(
-        fakeMiddleware.calledOnce(), 
+        fakeMiddleware.calledOnce(),
         'middleware called only once'
       )
     })

@@ -1,0 +1,22 @@
+{
+  "name": "presentation-testing",
+  "version": "1.0.0",
+  "description": "UNDER CONSTRUCTION",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-static 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imsnif/presentation-testing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imsnif/presentation-testing/issues"
+  },
+  "homepage": "https://github.com/imsnif/presentation-testing#readme",
+  "dependencies": {
+    "http-static": "0.0.8"
+  }
+}

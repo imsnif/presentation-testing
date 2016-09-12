@@ -1,4 +1,4 @@
-# testing-presentation
+# presentation-testing
 
 This is a rudimentary presentation about testing javascript.
 

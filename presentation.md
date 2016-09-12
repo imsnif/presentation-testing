@@ -2,6 +2,8 @@ class: center, middle
 
 # Testing (Javascript) Best Practices
 
+.footnote[https://github.com/imsnif/presentation-testing]
+
 ---
 # What we'll be talking about
 ## Why
@@ -426,3 +428,5 @@ Testing patterns (coverage, mocks, spies, fixtures)
 
 class: center, middle
 # Questions?
+
+.footnote[https://github.com/imsnif/presentation-testing]

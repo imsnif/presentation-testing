@@ -341,6 +341,28 @@ Testing patterns (coverage, mocks, spies, fixtures)
   ### Mocks / Stubs
   * Use to cut off external non-tested functionality
   * Make tests predictable
+  ```javascript
+    const proxyQuire = require('proxyQuire')
+    const mysqlMock = {
+      createConnection: () => {
+        return {
+          query: (queryString) => {
+            return Promise.resolve([
+              {id: 1, name: 'foo'},
+              {id: 2, name: 'bar'}
+            ])
+          }
+        }
+      }
+    }
+    test('can get user names', async t => {
+      // ...
+        const nameService = proxyQuire('../', {mysql: mysqlMock})
+        const names = await nameService.getAllNames()
+        t.deepEquals(names, ['foo', 'bar'])
+      // ...
+    })
+  ```
 ]
 ---
 .left-column[

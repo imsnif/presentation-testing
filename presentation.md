@@ -58,7 +58,7 @@ Testing patterns (coverage, mocks, spies, fixtures)
   ### What are we testing?
 
   * Find out what *exactly* we'd like to test
-  * Don't test other people's code - they should already have tested it themselves
+  * Don't test our dependent libraries - they should be tested by their developers
   * If testing integration with external code, test ONLY the integration
 ]
 ---

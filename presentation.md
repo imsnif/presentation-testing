@@ -25,8 +25,8 @@ Testing patterns (coverage, mocks, spies, fixtures)
 .right-column[
   ### Disclaimers
 
-  1. This talk is js-centric, but also deals with language-agnostic good practices.
-  2. The best practices described here are based on my opinion.
+  * This talk is js-centric, but also deals with language-agnostic good practices.
+  * The best practices described here are based on my opinion.
 ]
 
 ---
@@ -38,10 +38,11 @@ Testing patterns (coverage, mocks, spies, fixtures)
   ### Extras
 ]
 .right-column[
-  1. Maintainable code
-  2. Definition of what the code should do
-  3. Examples built in to our library
-  4. CI/CD
+  ### Why should we test?
+  * Maintainable code
+  * Definition of what the code should do
+  * Examples built in to our library
+  * CI/CD
 ]
 ---
 .left-column[
@@ -90,7 +91,7 @@ Testing patterns (coverage, mocks, spies, fixtures)
   test('first call to endpoint succeeds', async t => {
     t.plan(1)
     try {
-      const response = await RP('/my/awesome/endpoint')
+      const response = await RP('/my/awesome/incrementor')
       counter += 1
       t.equal(counter, response, 'response initial value is 1')
     } catch (e) {
@@ -101,7 +102,7 @@ Testing patterns (coverage, mocks, spies, fixtures)
   test('second call to endpoint succeeds', async t => {
     t.plan(1)
     try {
-      const response = await RP('/my/awesome/endpoint')
+      const response = await RP('/my/awesome/incrementor')
       counter += 1
       t.equal(counter, response, 'response incremented by 1')
     } catch (e) {
@@ -127,9 +128,9 @@ Testing patterns (coverage, mocks, spies, fixtures)
   test('first call to endpoint succeeds', async t => {
     t.plan(1)
     try {
-      const firstResponse = await RP('/my/awesome/endpoint')
+      const firstResponse = await RP('/my/awesome/incrementor')
       t.equal(firstResponse, 1, 'response initial value is 1')
-      const secondResponse = await RP('/my/awesome/endpoint')
+      const secondResponse = await RP('/my/awesome/incrementor')
       t.equal(secondResponse, 2, 'response value incremented by 1')
     } catch (e) {
       t.fail(e.message)
@@ -155,7 +156,7 @@ Testing patterns (coverage, mocks, spies, fixtures)
     const created = await callCreateUser()
     let existing = await callGetUser(created.id)
     t.equal(created.name, existing.name, 'can get created user')
-    let changed = await callChangeUser(existing.id, {name: 'foo'})
+    const changed = await callChangeUser(existing.id, {name: 'foo'})
     existing = await callGetUser(created.id)
     t.equal(
       existing.name,

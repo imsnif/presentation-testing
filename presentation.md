@@ -399,4 +399,7 @@ Testing patterns (coverage, mocks, spies, fixtures)
     })
   ```
 ]
+---
 
+class: center, middle
+# Questions?

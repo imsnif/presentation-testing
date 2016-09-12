@@ -1,7 +1,7 @@
 {
   "name": "presentation-testing",
   "version": "1.0.0",
-  "description": "UNDER CONSTRUCTION",
+  "description": "Rudimentary presentation about testing",
   "main": "index.js",
   "scripts": {
     "start": "http-static 3000"

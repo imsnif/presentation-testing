@@ -484,6 +484,7 @@ Testing patterns (coverage, mocks, spies, fixtures)
       const myApp = require('../')
       const fakeMiddleware = sinon.spy()
       myApp.use(fakeMiddleware)
+      myApp.get()
       t.ok(
         fakeMiddleware.calledOnce(),
         'middleware called only once'

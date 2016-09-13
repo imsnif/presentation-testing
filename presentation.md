@@ -6,7 +6,7 @@ class: center, middle
 
 ---
 # What we'll be talking about
-## Why
+## Why?
 So we'll (hopefully) all agree tests are awesome.
 ## What?
 Test best practices and meta-guidelines.

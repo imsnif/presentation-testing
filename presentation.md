@@ -64,11 +64,8 @@ Testing patterns (coverage, mocks, spies, fixtures)
 .right-column[
   ### What are we testing?
 
-  * Find out what *exactly* we'd like to test
-  <!---
-  [MV]: reformulate this phrase, because it is not fully clear
-  -->
-  * Don't test other people's code - they should already have tested it themselves 
+  * Find out what *exactly* we'd like to test 
+  * Don't test our dependent libraries - they should be tested by their developers
   * If testing integration with external code, test ONLY the integration
 ]
 ---
@@ -136,7 +133,7 @@ Testing patterns (coverage, mocks, spies, fixtures)
       -->
 .right-column[
   They should not rely on other tests or on test order
-      
+
   Better:
   ```javascript
 

@@ -23,11 +23,18 @@ Testing patterns (coverage, mocks, spies, fixtures)
   ### How?
   ### Extras
 ]
+    <!---
+    [MV]: Add couple of slides about theory - what is unit/integration/e2e tests, just for a reminder
+    -->
 
 .right-column[
   ### Disclaimers
 
   * This talk is js-centric, but also deals with language-agnostic good practices.
+    <!---
+    [MV]: I think you should do some slide about TAPE, because all of examples are on TAPE and I think they are not very clear for people, who didn't use it before
+    It will take couple of minutes, but will prepare people to what will they see in next slides
+    -->
   * The best practices described here are based on my opinion.
 ]
 
@@ -58,7 +65,10 @@ Testing patterns (coverage, mocks, spies, fixtures)
   ### What are we testing?
 
   * Find out what *exactly* we'd like to test
-  * Don't test other people's code - they should already have tested it themselves
+  <!---
+  [MV]: reformulate this phrase, because it is not fully clear
+  -->
+  * Don't test other people's code - they should already have tested it themselves 
   * If testing integration with external code, test ONLY the integration
 ]
 ---
@@ -121,9 +131,12 @@ Testing patterns (coverage, mocks, spies, fixtures)
   ### How?
   ### Extras
 ]
+<!---
+      [MV]: bad name for test, because it checks not only first call succeed, but two calls one after another
+      -->
 .right-column[
   They should not rely on other tests or on test order
-
+      
   Better:
   ```javascript
 
@@ -183,7 +196,10 @@ Testing patterns (coverage, mocks, spies, fixtures)
 ]
 .right-column[
   ## Should be simple, short and 'easy to reason about'
-
+<!---
+      [MV]: result of first test should be "can create user" and not 'can get created user', because test is not about getting.
+      or, at least, after created - it should check HTTP response status 201, to be sure that user was created
+      -->
   Better:
   ```javascript
   test('create user', async t => {
@@ -220,6 +236,11 @@ Testing patterns (coverage, mocks, spies, fixtures)
 .right-column[
   ## Guidelines
   * Tests should be structured as one or more try catch blocks (or syntactic equivalent)
+  <!---
+        it is only TAPE specific, I didn't see this concept in other testing frameworks
+        More common patter - if no asserts returned fail - test was passed
+        And BTW I don't like this counting t.plan concept of TAPE :), specially while refactoring
+        -->
   * Tests should use assertion counting to make sure all cases ran (t.plan())
   * Tests should be understandable from their output (test names + assertion messages)
 ]
@@ -376,6 +397,9 @@ Testing patterns (coverage, mocks, spies, fixtures)
   ## Extras
 ]
 .right-column[
+    <!---
+          very ES6 ninja code, I think you should explain what happens here :)
+          -->
   ### Fixtures
   * Use to create state data for tests and then tear it down
   ```javascript

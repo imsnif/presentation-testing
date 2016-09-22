@@ -23,19 +23,64 @@ Testing patterns (coverage, mocks, spies, fixtures)
   ### How?
   ### Extras
 ]
-    <!---
-    [MV]: Add couple of slides about theory - what is unit/integration/e2e tests, just for a reminder
-    -->
 
 .right-column[
   ### Disclaimers
 
   * This talk is js-centric, but also deals with language-agnostic good practices.
-    <!---
-    [MV]: I think you should do some slide about TAPE, because all of examples are on TAPE and I think they are not very clear for people, who didn't use it before
-    It will take couple of minutes, but will prepare people to what will they see in next slides
-    -->
+
   * The best practices described here are based on my opinion.
+]
+
+---
+
+.left-column[
+  ## Intro
+  ### Why?
+  ### What?
+  ### How?
+  ### Extras
+]
+
+.right-column[
+  ### Test Types
+
+  * <b>Unit</b> - test the smallest unit of functionality (eg. method), should be the most common
+
+  * <b>Integration/Functional</b> - tests feature level and more complex behavior (eg. api)
+
+  * <b>E2E</b> - test end-to-end functionality, should be sparse and not replace the other two
+]
+
+---
+.left-column[
+  ## Intro
+  ### Why?
+  ### What?
+  ### How?
+  ### Extras
+]
+
+.right-column[
+  ### Tape
+
+  * Lightweight testing framework
+
+  * Makes basic (good) decisions for you
+
+  * Example
+  ```javascript
+    test('timing test', (t) => {
+      t.plan(2)
+
+      t.equal(typeof Date.now, 'function')
+      const start = Date.now()
+
+      setTimeout(() => t.equal(Date.now() - start, 100), 100)
+    })
+  ```
+
+.footnote[[Why I use Tape instead of Mocha and so should you (Eric Elliot)](https://medium.com/javascript-scene/why-i-use-tape-instead-of-mocha-so-should-you-6aa105d8eaf4#.9p8frcu8g)]
 ]
 
 ---
@@ -64,7 +109,7 @@ Testing patterns (coverage, mocks, spies, fixtures)
 .right-column[
   ### What are we testing?
 
-  * Find out what *exactly* we'd like to test 
+  * Find out what *exactly* we'd like to test
   * Don't test our dependent libraries - they should be tested by their developers
   * If testing integration with external code, test ONLY the integration
 ]
@@ -128,16 +173,13 @@ Testing patterns (coverage, mocks, spies, fixtures)
   ### How?
   ### Extras
 ]
-<!---
-      [MV]: bad name for test, because it checks not only first call succeed, but two calls one after another
-      -->
 .right-column[
   They should not rely on other tests or on test order
 
   Better:
   ```javascript
 
-  test('first call to endpoint succeeds', async t => {
+  test('call to endpoint succeeds', async t => {
     t.plan(1)
     try {
       const firstResponse = await RP('/my/awesome/incrementor')
@@ -193,16 +235,13 @@ Testing patterns (coverage, mocks, spies, fixtures)
 ]
 .right-column[
   ## Should be simple, short and 'easy to reason about'
-<!---
-      [MV]: result of first test should be "can create user" and not 'can get created user', because test is not about getting.
-      or, at least, after created - it should check HTTP response status 201, to be sure that user was created
-      -->
   Better:
   ```javascript
   test('create user', async t => {
     t.plan(1)
     const created = await callCreateUser()
     const existing = await callGetUser(created.id)
+    t.equal(created.statusCode, 201, 'proper status code returned')
     t.equal(created.name, existing.name, 'can get created user')
   })
 
@@ -233,12 +272,9 @@ Testing patterns (coverage, mocks, spies, fixtures)
 .right-column[
   ## Guidelines
   * Tests should be structured as one or more try catch blocks (or syntactic equivalent)
-  <!---
-        it is only TAPE specific, I didn't see this concept in other testing frameworks
-        More common patter - if no asserts returned fail - test was passed
-        And BTW I don't like this counting t.plan concept of TAPE :), specially while refactoring
-        -->
+
   * Tests should use assertion counting to make sure all cases ran (t.plan())
+
   * Tests should be understandable from their output (test names + assertion messages)
 ]
 ---
@@ -394,9 +430,6 @@ Testing patterns (coverage, mocks, spies, fixtures)
   ## Extras
 ]
 .right-column[
-    <!---
-          very ES6 ninja code, I think you should explain what happens here :)
-          -->
   ### Fixtures
   * Use to create state data for tests and then tear it down
   ```javascript

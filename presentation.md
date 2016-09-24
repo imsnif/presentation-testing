@@ -252,12 +252,12 @@ Testing patterns (coverage, mocks, spies, fixtures)
     t.equal(created.name, 'foo', 'name changed successfully')
   })
 
-  test('changed user matches existing', async t => {
+  test('changed user does not match existing', async t => {
     t.plan(1)
     const created = await callCreateUser()
     const changed = await callChangeUser(created.id, {name: 'foo'})
     const existing = await callGetUser(created.id)
-    t.deepEqual(changed, existing, 'changed user matches existing')
+    t.notDeepEqual(changed, existing, 'changed user does not match existing')
   })
   ```
 ]

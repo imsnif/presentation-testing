@@ -443,7 +443,7 @@ Testing patterns (coverage, mocks, spies, fixtures)
     test('can remove friend from user', async t => {
       await fixtures([foo, bar], [{foo: 'bar'}, {bar: 'foo'}])
       await removeFriend('foo', 'bar')
-      const currentFriends = getFriends('foo')
+      const currentFriends = await getFriends('foo')
       t.equals(
         currentFriends.length,
         0,
